@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#18181b">
+<title>拾光影棚 · 一张生活照，出四套精修</title>
+<style>
+/* ============================================================
+   拾光影棚 —— 暖调人像工作室
+   设计令牌
+   ============================================================ */
+:root {
+  /* 底色：暖白纸感 */
+  --paper:      #faf7f2;
+  --paper-2:    #f2ece3;
+  --card:       #ffffff;
+  --ink:        #1c1917;
+  --ink-2:      #44403c;
+  --ink-3:      #78716c;
+  --line:       #e7e0d6;
+
+  /* 品牌色：单一暖赭 accent（不用紫粉渐变） */
+  --accent:     #b45309;
+  --accent-2:   #92400e;
+  --accent-soft:#fef3c7;
+  --accent-ink: #ffffff;
+
+  /* 语义色 */
+  --ok:         #15803d;
+  --ok-soft:    #dcfce7;
+  --warn:       #b45309;
+
+  /* 排版 */
+  --font-display: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+               "Microsoft YaHei", "Helvetica Neue", sans-serif;
+
+  /* 间距（8pt 网格） */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
+
+  /* 圆角 */
+  --r-sm: 8px; --r-md: 14px; --r-lg: 22px; --r-full: 999px;
+
+  /* 阴影 */
+  --sh-1: 0 1px 2px rgba(28,25,23,.05);
+  --sh-2: 0 2px 8px rgba(28,25,23,.06), 0 1px 2px rgba(28,25,23,.04);
+  --sh-3: 0 8px 24px rgba(28,25,23,.08), 0 2px 6px rgba(28,25,23,.04);
+  --sh-4: 0 20px 48px rgba(28,25,23,.14), 0 4px 12px rgba(28,25,23,.06);
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --dur: 280ms;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(180,83,9,.055), transparent 70%),
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(28,25,23,.012) 3px 4px);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 纸纹噪点 */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100;
+  opacity: .28; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+.shell { max-width: 1080px; margin: 0 auto; padding: 0 var(--s5) var(--s8); }
+
+/* ---------- 顶部 ---------- */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--s5) 0 var(--s4);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s6);
+}
+.brand { display: flex; align-items: center; gap: var(--s3); }
+.brand-mark {
+  width: 38px; height: 38px; border-radius: 11px;
+  background: linear-gradient(150deg, var(--accent) 0%, #d97706 100%);
+  display: grid; place-items: center;
+  box-shadow: var(--sh-2);
+  flex: none;
+}
+.brand-mark svg { width: 21px; height: 21px; }
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 19px; font-weight: 600; letter-spacing: .06em;
+  line-height: 1.15;
+}
+.brand-sub {
+  font-size: 11px; color: var(--ink-3); letter-spacing: .16em;
+  text-transform: uppercase; line-height: 1.2;
+}
+.topbar-note { font-size: 13px; color: var(--ink-3); text-align: right; line-height: 1.4; }
+
+/* ---------- Hero ---------- */
+.hero { text-align: center; margin-bottom: var(--s7); }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 7vw, 50px);
+  font-weight: 600; line-height: 1.18;
+  letter-spacing: .01em;
+  margin: 0 0 var(--s4);
+  text-wrap: pretty;
+}
+.hero h1 em {
+  font-style: normal; color: var(--accent);
+  position: relative; white-space: nowrap;
+}
+.hero h1 em::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: .08em;
+  height: .34em; background: var(--accent-soft); z-index: -1;
+  border-radius: 3px;
+}
+.hero p {
+  font-size: clamp(14px, 3.6vw, 17px); color: var(--ink-2);
+  max-width: 30em; margin: 0 auto; text-wrap: pretty;
+}
+
+/* ---------- 上传区 ---------- */
+.uploader {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r-lg); box-shadow: var(--sh-2);
+  padding: var(--s6) var(--s5); margin-bottom: var(--s6);
+  position: relative; overflow: hidden;
+}
+.drop {
+  border: 2px dashed #d6cec2; border-radius: var(--r-md);
+  padding: var(--s7) var(--s5); text-align: center;
+  cursor: pointer; transition: all var(--dur) var(--ease);
+  background: var(--paper);
+}
+.drop:hover, .drop:focus-visible { border-color: var(--accent); background: #fffdf8; }
+.drop.over { border-color: var(--accent); background: var(--accent-soft); transform: scale(1.006); }
+.drop svg { width: 46px; height: 46px; color: var(--accent); margin-bottom: var(--s3); }
+.drop h3 { font-size: 17px; margin: 0 0 var(--s2); font-weight: 600; }
+.drop p { font-size: 13.5px; color: var(--ink-3); margin: 0; }
+.drop .hint { font-size: 12px; color: var(--ink-3); margin-top: var(--s3); opacity: .8; }
+
+/* ---------- 预览区 ---------- */
+.preview { display: none; }
+.preview.on { display: block; }
+
+.src-row {
+  display: flex; gap: var(--s4); align-items: flex-start;
+  background: var(--paper-2); border-radius: var(--r-md);
+  padding: var(--s3); margin-bottom: var(--s5);
+}
+.src-thumb {
+  width: 68px; height: 68px; border-radius: var(--r-sm);
+  object-fit: cover; flex: none; box-shadow: var(--sh-1);
+  border: 1px solid var(--line);
+}
+.src-info { flex: 1; min-width: 0; padding-top: 2px; }
+.src-info strong { display: block; font-size: 14px; font-weight: 600; }
+.src-info span { font-size: 12.5px; color: var(--ink-3); }
+.src-actions { display: flex; flex-direction: column; gap: var(--s2); }
+
+/* 按钮 */
+.btn {
+  font-family: inherit; font-size: 14px; font-weight: 600;
+  padding: 9px 18px; border-radius: var(--r-full);
+  border: 1px solid transparent; cursor: pointer;
+  transition: all var(--dur) var(--ease);
+  white-space: nowrap; display: inline-flex; align-items: center;
+  justify-content: center; gap: 6px; min-height: 38px;
+}
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn-primary {
+  background: var(--accent); color: var(--accent-ink);
+  box-shadow: var(--sh-2);
+}
+.btn-primary:hover { background: var(--accent-2); box-shadow: var(--sh-3); }
+.btn-ghost {
+  background: var(--card); color: var(--ink-2); border-color: var(--line);
+}
+.btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); }
+.btn-lg { font-size: 16px; padding: 14px 30px; min-height: 50px; }
+.btn-block { width: 100%; }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* 预设选择 */
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: var(--s4); gap: var(--s3);
+}
+.section-head h2 {
+  font-family: var(--font-display); font-size: 21px; font-weight: 600;
+  margin: 0; letter-spacing: .02em;
+}
+.section-head .meta { font-size: 13px; color: var(--ink-3); }
+
+.presets {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3);
+  margin-bottom: var(--s6);
+}
+.preset {
+  background: var(--card); border: 1.5px solid var(--line);
+  border-radius: var(--r-md); padding: var(--s4) var(--s3);
+  cursor: pointer; text-align: center;
+  transition: all var(--dur) var(--ease);
+}
+.preset:hover { border-color: #c9bda9; transform: translateY(-2px); box-shadow: var(--sh-2); }
+.preset.sel {
+  border-color: var(--accent); background: #fffdf8;
+  box-shadow: 0 0 0 3px rgba(180,83,9,.10), var(--sh-2);
+}
+.preset-ico {
+  width: 44px; height: 44px; margin: 0 auto var(--s3);
+  border-radius: 11px; display: grid; place-items: center;
+  background: var(--paper-2); color: var(--ink-2);
+}
+.preset.sel .preset-ico { background: var(--accent-soft); color: var(--accent-2); }
+.preset-ico svg { width: 23px; height: 23px; }
+.preset strong { display: block; font-size: 15px; font-weight: 600; }
+.preset span { font-size: 11.5px; color: var(--ink-3); }
+
+/* 结果卡片 */
+.result {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r-lg); box-shadow: var(--sh-3);
+  overflow: hidden; margin-bottom: var(--s5);
+}
+.result-head {
+  padding: var(--s4) var(--s5); border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s3); flex-wrap: wrap;
+}
+.result-head h3 { font-size: 16px; margin: 0; font-weight: 600; }
+.result-head .tag {
+  font-size: 11.5px; padding: 3px 10px; border-radius: var(--r-full);
+  background: var(--accent-soft); color: var(--accent-2); font-weight: 600;
+}
+.result-head .tag.locked { background: #f4f4f5; color: var(--ink-3); }
+.result-body {
+  padding: var(--s5); display: flex; gap: var(--s5);
+  align-items: flex-start; flex-wrap: wrap;
+}
+.canvas-wrap {
+  flex: 1 1 380px; min-width: 0;
+  background: repeating-conic-gradient(#f4f4f5 0 25%, #fafafa 0 50%) 0 0/18px 18px;
+  border-radius: var(--r-md); padding: var(--s3);
+  display: grid; place-items: center; min-height: 240px;
+  border: 1px solid var(--line);
+}
+.canvas-wrap canvas, .canvas-wrap img {
+  max-width: 100%; max-height: 460px; display: block;
+  box-shadow: var(--sh-3); border-radius: 3px;
+}
+.canvas-wrap.locked canvas, .canvas-wrap.locked img { filter: none; }
+
+.pay-panel {
+  flex: 0 0 268px; background: var(--paper-2);
+  border-radius: var(--r-md); padding: var(--s4);
+  display: flex; flex-direction: column; gap: var(--s3);
+}
+.pay-panel h4 { font-size: 14.5px; margin: 0; font-weight: 600; }
+.pay-price {
+  font-family: var(--font-display); font-size: 32px; font-weight: 600;
+  color: var(--accent-2); line-height: 1;
+}
+.pay-price small { font-size: 14px; color: var(--ink-3); font-family: var(--font-body); font-weight: 400; }
+.pay-qr {
+  width: 100%; border-radius: var(--r-sm); background: #fff;
+  padding: var(--s2); border: 1px solid var(--line);
+}
+.pay-note { font-size: 12px; color: var(--ink-3); line-height: 1.5; margin: 0; }
+.pay-hint {
+  font-size: 12px; color: var(--ok); background: var(--ok-soft);
+  padding: 7px 10px; border-radius: var(--r-sm); display: none;
+}
+.pay-hint.on { display: block; }
+
+.result-foot {
+  padding: var(--s4) var(--s5); border-top: 1px solid var(--line);
+  display: flex; gap: var(--s3); flex-wrap: wrap; align-items: center;
+}
+.result-foot .grow { flex: 1; }
+
+/* 加载 */
+.loading { text-align: center; padding: var(--s7) 0; }
+.spinner {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 3px solid var(--line); border-top-color: var(--accent);
+  animation: spin .8s linear infinite; margin: 0 auto var(--s4);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading p { font-size: 14px; color: var(--ink-3); margin: 0; }
+
+/* 提示条 */
+.toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 140%);
+  background: var(--ink); color: #fff; padding: 12px 20px;
+  border-radius: var(--r-full); font-size: 14px; z-index: 200;
+  box-shadow: var(--sh-4); transition: transform 400ms var(--ease);
+  max-width: calc(100vw - 40px); text-align: center;
+}
+.toast.on { transform: translate(-50%, 0); }
+
+/* 页脚 */
+.footer {
+  text-align: center; padding: var(--s6) 0 0; margin-top: var(--s7);
+  border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-3);
+}
+.footer a { color: var(--ink-2); }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 760px) {
+  .shell { padding: 0 var(--s4) var(--s7); }
+  .topbar { padding-top: var(--s4); }
+  .topbar-note { display: none; }
+  .presets { grid-template-columns: repeat(2, 1fr); gap: var(--s2); }
+  .uploader { padding: var(--s4) var(--s3); }
+  .drop { padding: var(--s5) var(--s3); }
+  .result-body { padding: var(--s4); gap: var(--s4); }
+  .pay-panel { flex: 1 1 100%; }
+  .result-foot { padding: var(--s4); }
+  .result-foot .btn { flex: 1 1 100%; }
+  .result-foot .grow { display: none; }
+}
+@media (max-width: 420px) {
+  .hero h1 { font-size: 27px; }
+  .preset strong { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/>
+          <circle cx="12" cy="12" r="3.2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">拾光影棚</div>
+        <div class="brand-sub">Photo Studio</div>
+      </div>
+    </div>
+    <div class="topbar-note">
+      一张生活照 → 证件照 · 商务照 · 写真 · 表情包<br>
+      预览免费，高清无水印 ¥9.9
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>把一张生活照，<br>变成<em>四套精修</em></h1>
+    <p>证件照、业务形象照、写真、表情包，一次上传全部生成。先免费看效果，满意再解锁高清原图。</p>
+  </section>
+
+  <!-- 上传 -->
+  <section class="uploader" id="uploader">
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="点击或拖拽上传照片">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h3>点击上传，或把照片拖进来</h3>
+      <p>正面生活照 / 半身照 / 证件原图都可以</p>
+      <p class="hint">JPG · PNG · WEBP · 最大 20MB · 照片只在你的浏览器里处理，不会上传服务器</p>
+    </div>
+    <input type="file" id="file" accept="image/*" hidden>
+  </section>
+
+  <!-- 预览 -->
+  <section class="preview" id="preview">
+    <div class="src-row">
+      <img class="src-thumb" id="srcThumb" alt="原图缩略图">
+      <div class="src-info">
+        <strong id="srcName">photo.jpg</strong>
+        <span id="srcMeta">—</span>
+      </div>
+      <div class="src-actions">
+        <button class="btn btn-ghost" id="btnReset">换一张</button>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>选择风格</h2>
+      <span class="meta">点击切换 · 实时重新生成</span>
+    </div>
+    <div class="presets" id="presets"></div>
+
+    <div class="section-head">
+      <h2>生成结果</h2>
+      <span class="meta" id="resultMeta"></span>
+    </div>
+
+    <div class="result" id="result">
+      <div class="result-head">
+        <h3 id="resultTitle">证件照</h3>
+        <span class="tag locked" id="resultTag">预览版 · 带水印</span>
+      </div>
+      <div class="result-body">
+        <div class="canvas-wrap locked" id="canvasWrap">
+          <canvas id="outCanvas"></canvas>
+        </div>
+        <div class="pay-panel" id="payPanel">
+          <h4>解锁高清无水印</h4>
+          <div class="pay-price">¥9.9 <small>一次性 · 全风格</small></div>
+          <img class="pay-qr" src="assets/pay-qr.png" alt="微信收款码">
+          <p class="pay-note">扫码支付 9.9 元，然后点下面的「我已支付」。支付通道临时用收款码，正式版会接入自动支付。</p>
+          <div class="pay-hint" id="payHint">已记录，正在生成高清版本…</div>
+          <button class="btn btn-ghost btn-block" id="btnUnlock">解锁高清无水印 9.9 元</button>
+          <button class="btn btn-primary btn-block" id="btnPaid">我已支付</button>
+        </div>
+      </div>
+      <div class="result-foot">
+        <span class="grow" id="footNote">解锁后可下载：证件照 A4 排版 / 写真 4 张 / 表情包 9 宫格</span>
+        <button class="btn btn-ghost" id="btnDlPreview">下载预览图</button>
+        <button class="btn btn-primary" id="btnDl" disabled>下载高清</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    拾光影棚 · 演示版本 · 所有图像处理均在本地浏览器完成<br>
+    <a href="#" onclick="return false">正式版将接入人脸分割与自动支付</a>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
